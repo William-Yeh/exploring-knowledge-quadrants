@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md frontmatter
+        run: |
+          python3 - <<'EOF'
+          import sys
+          with open("skill/SKILL.md") as f:
+              content = f.read()
+          if not content.startswith("---"):
+              print("ERROR: skill/SKILL.md missing frontmatter")
+              sys.exit(1)
+          lines = content.split('\n')
+          closing = [i for i, l in enumerate(lines[1:], 1) if l.strip() == '---']
+          if not closing:
+              print("ERROR: skill/SKILL.md frontmatter not closed (missing closing ---)")
+              sys.exit(1)
+          required = ["name:", "description:", "license:", "metadata:"]
+          missing = [r for r in required if r not in content]
+          if missing:
+              print(f"ERROR: Missing frontmatter fields: {missing}")
+              sys.exit(1)
+          print("skill/SKILL.md frontmatter OK")
+          EOF
+
+      - name: Check README badges
+        run: |
+          python3 - <<'EOF'
+          import sys
+          with open("README.md") as f:
+              content = f.read()
+          required = ["CI", "License", "Agent Skills", "## Installation", "## Usage"]
+          missing = [r for r in required if r not in content]
+          if missing:
+              print(f"ERROR: README.md missing: {missing}")
+              sys.exit(1)
+          print("README.md structure OK")
+          EOF
+
+      - name: Check LICENSE exists
+        run: |
+          test -f LICENSE || { echo "ERROR: LICENSE missing"; exit 1; }
+          echo "LICENSE OK"
+
+      - name: Check references file exists
+        run: |
+          test -f skill/references/persona-axes.md || { echo "ERROR: skill/references/persona-axes.md missing"; exit 1; }
+          echo "skill/references/persona-axes.md OK"
