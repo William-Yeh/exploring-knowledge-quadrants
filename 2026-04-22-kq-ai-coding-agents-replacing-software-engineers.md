@@ -1,0 +1,31 @@
+# Knowledge Quadrants: AI coding agents replacing senior and junior software engineers
+_2026-04-22 · depth: shallow · web: off_
+
+## 👁️ Known Knowns — Conscious Knowledge
+- **Routine coding tasks are already substantially automated**: Boilerplate generation, test scaffolding, CRUD implementations, documentation, and simple bug fixes are the tasks Copilot/Cursor/Devin handle today — these skew toward what junior engineers spend most of their time on in enterprise settings.
+- **Junior engineers are more exposed first**: Entry-level work is disproportionately legible (well-specified, standard patterns, documented domain) — exactly what current AI models handle best.
+- **Senior engineers are shifting from implementation to orchestration**: Architecture decisions, requirements negotiation, system design, and validating/directing AI output are the durable value. Raw code production is a shrinking fraction of what makes a senior engineer expensive.
+- **Productivity gains are real but task-bounded**: Studies show 20–40% productivity gains on well-specified tasks; the gains collapse on ambiguous, novel, or cross-cutting concerns.
+- **"Replace" vs. "augment" precedents cut both ways**: Calculators didn't replace accountants; CAD didn't replace architects. But those tools also didn't generate entire work products from a natural-language prompt — the analogy has limits.
+
+## 🔍 Known Unknowns — Identified Gaps
+- What is the realistic timeline for AI to handle the full SE lifecycle — requirements through deployment and incident response — not just code-writing sub-tasks?
+- Which competencies remain durable: system design? production debugging? stakeholder alignment? and how do compensation curves shift around them?
+- How will the entry-level pipeline work if junior roles shrink — where do the next cohort of senior engineers come from?
+- How does impact vary by domain: fintech regulatory compliance, safety-critical embedded systems, early-stage startup, versus standard web backend?
+- What new roles (AI orchestrator, LLM output reviewer, prompt engineer) actually emerge, and what are their career ceilings?
+
+## 🌫️ Unknown Knowns — Tacit Knowledge
+- **Most of engineering value isn't in writing code**: Experienced engineers know the real work is understanding what NOT to build, negotiating requirements down, catching the wrong problem being solved. AI makes bad decisions faster and cheaper to execute — which can accelerate technical debt accumulation, not reduce it.
+- **"Working code" and "correct code in the right place" are different things**: AI generates the former readily. The latter requires organizational context, system history, and judgment about second-order effects that aren't in the prompt.
+- **The most vulnerable engineers aren't the most junior — they're the most legible**: Standard-pattern, well-documented work is vulnerable regardless of seniority. Engineers working in underdocumented, safety-critical, or deeply organizational-context-dependent domains are stickier than their title suggests.
+- **The junior-to-senior learning path is changing, not disappearing**: Engineers entering today are already AI-native; they're learning to direct and verify, not just produce. The shape of expertise development is shifting even if the destination hasn't moved much.
+
+## 🌑 Unknown Unknowns — Hidden Risks & Blind Spots
+- **Junior pipeline collapse (long lag, invisible now)**: Eliminating entry-level roles removes the apprenticeship track that produces senior engineers. The industry might face a senior talent drought in 7–10 years — not because AI capability failed to materialize, but because the knowledge transfer mechanism was interrupted. No one is modeling this lag; everyone is optimizing the near-term.
+- **SE is not primarily a code-writing job**: Studies suggest engineers spend 30–40% of time writing code. AI automating code-writing automates a minority of the actual working day; meetings, design, review, incident response, and coordination are largely unaddressed. The "AI replaces engineers" framing is anchored on the wrong sub-task.
+- **Jevons paradox for software**: Higher developer productivity has historically increased software demand rather than reducing engineering headcount. The number of software systems society wants may scale with the cost of producing them — keeping or growing total demand even as per-engineer output rises dramatically.
+- **Capability improvement concentrates judgment risk in humans**: As AI handles routine code, the tasks remaining for humans are higher-stakes and harder to evaluate. A junior engineer reviewing AI-generated architecture they can't fully reason about is not a safety net — it's a liability. The "human-in-the-loop" assumption silently requires that the human can meaningfully evaluate AI output, which may not hold.
+- **The buying decision is velocity theater, not throughput**: At the executive level, AI coding agents are often hired to demonstrate engineering velocity to boards, investors, or hiring committees — not to optimize actual throughput. The tool then gets evaluated against a misaligned metric, and post-hoc disillusionment gets blamed on AI capability rather than the framing of the purchase decision. Adoption decisions made on the wrong job-to-be-done predict their own failure mode.
+- **Citizen developer absorption, not engineer replacement**: The biggest displacement of "engineers" may not come from AI agents writing code in place of engineers, but from adjacent roles (PMs, marketers, ops) shipping production software directly with AI assistance. The engineering function diffuses into other job titles — total people-writing-code grows even as headcount labelled "engineer" shrinks. The market category being eaten is the *role definition*, not the *work*.
+- **Engineering for AI legibility as an emerging specialty**: Developers are already reshaping codebases for AI consumption — smaller files, verbose docstrings, more granular module boundaries, explicit type annotations — to improve agent performance on their repos. This is a behavioral signal that "engineering for AI legibility" is becoming a new specialization. AI doesn't only subtract jobs; accommodation patterns spawn new ones, and the new specialty may not yet have a name in any HR taxonomy.
