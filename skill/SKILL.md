@@ -6,7 +6,7 @@ description: >-
 license: Apache-2.0
 metadata:
   author: William-Yeh
-  version: "0.1"
+  version: "0.2"
 ---
 
 # exploring-knowledge-quadrants
@@ -68,42 +68,66 @@ describing the tacit pattern or instinct.
 
 **🌑 Unknown Unknowns — Hidden Risks & Blind Spots (shallow technique stack)**
 
-Apply all nine probes in sequence. For each, generate 1–2 candidate items:
+Apply all twelve probes in sequence. For each, generate 1–2 candidate items:
 
 1. **Pre-mortem**: Imagine this effort around `<topic>` fails in 3 years.
-   What caused it? List failure modes that aren't in Known Unknowns.
+   What caused it? List failure modes that aren't in Known Unknowns —
+   especially failure modes that come from *locally rational, well-managed
+   decisions*, not from mistakes or negligence (cf. Christensen's
+   Innovator's Dilemma: the right call in the current frame is the wrong
+   call for the long arc).
 
 2. **Assumption audit**: What is a practitioner implicitly assuming about
-   `<topic>` that could be wrong? Focus on hidden premises, not explicit gaps.
+   `<topic>` that could be wrong? Focus on hidden premises, not explicit
+   gaps. Then flip the lens: what about `<topic>` will *not* change over
+   the next 10 years, and should anchor the strategy regardless of trend
+   noise? (Bezos invariant principle.)
 
-3. **Adjacent domain transfer**: What does a closely related field (name it)
+3. **Jobs-to-be-Done reframe**: What task is the user actually *hiring*
+   `<topic>` to complete, regardless of product form? What non-obvious
+   alternatives — possibly from outside the industry — could fulfill the
+   same underlying task and make `<topic>` irrelevant? (Drill → 3M
+   Command Strip: the customer wanted a hung picture, not a hole.)
+
+4. **Non-consumption probe**: Who has the same underlying need but consumes
+   *nothing* in this category today? Which barrier — financial, skill,
+   access, or time — keeps them out? Removing a barrier often opens a
+   market 10–100× larger than improving the product for existing users.
+
+5. **User-workarounds probe** (使用者改造): Where are practitioners
+   jury-rigging their own solutions today (workaround scripts, manual
+   processes, third-party add-ons, kludges)? Behavioral workarounds are
+   loud, empirical signals of unmet need that surveys and interviews
+   systematically miss — and they point directly at the next breakthrough.
+
+6. **Adjacent domain transfer**: What does a closely related field (name it)
    know that this framing ignores? What lesson transfers?
 
-4. **Distant domain transfer**: What does a completely different industry or
+7. **Distant domain transfer**: What does a completely different industry or
    discipline — aviation, medicine, nuclear energy, finance, law, or another
    field far from `<topic>` — know about this *class* of problem? Name the
    field and the hard-won lesson that transfers.
 
-5. **Second-order effects**: What non-obvious downstream consequences of
+8. **Second-order effects**: What non-obvious downstream consequences of
    `<topic>` aren't already captured in Known Unknowns?
 
-6. **Contradiction scan** (TRIZ): What parameter improvements in `<topic>`
+9. **Contradiction scan** (TRIZ): What parameter improvements in `<topic>`
    necessarily degrade something else? Name the tension explicitly.
 
-7. **Contrarian reversal**: Take the most fundamental assumption about
-   `<topic>` and deliberately reverse it. What does the reversed premise
-   reveal that the current framing cannot see? (de Bono Provocation / 逆向思維)
+10. **Contrarian reversal**: Take the most fundamental assumption about
+    `<topic>` and deliberately reverse it. What does the reversed premise
+    reveal that the current framing cannot see? (de Bono Provocation / 逆向思維)
 
-8. **Constraint audit**: What is being treated as a hard, immovable constraint
-   in `<topic>` that is actually a conventional obstacle — i.e., something
-   that feels fixed but could be removed or redesigned? Name the
-   misclassified constraint and what becomes possible if it is dissolved.
+11. **Constraint audit**: What is being treated as a hard, immovable constraint
+    in `<topic>` that is actually a conventional obstacle — i.e., something
+    that feels fixed but could be removed or redesigned? Name the
+    misclassified constraint and what becomes possible if it is dissolved.
 
-9. **Novice lens**: Imagine a skilled practitioner from an unrelated discipline
-   encounters `<topic>` for the first time. What would they find arbitrary,
-   unnecessarily complex, or "just the way it's done" that experts have stopped
-   perceiving as a choice? What has domain experience normalized that a
-   beginner's eye would flag as strange?
+12. **Novice lens**: Imagine a skilled practitioner from an unrelated discipline
+    encounters `<topic>` for the first time. What would they find arbitrary,
+    unnecessarily complex, or "just the way it's done" that experts have stopped
+    perceiving as a choice? What has domain experience normalized that a
+    beginner's eye would flag as strange?
 
 Consolidate probe results: deduplicate, then rank by surprise value. Demote
 any item the user almost certainly already knows to Known Unknowns. Keep 3–5
