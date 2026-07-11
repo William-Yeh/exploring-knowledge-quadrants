@@ -56,3 +56,29 @@ jobs:
         run: |
           test -f skill/references/persona-axes.md || { echo "ERROR: skill/references/persona-axes.md missing"; exit 1; }
           echo "skill/references/persona-axes.md OK"
+
+      - name: Check validator script runs
+        run: |
+          test -f skill/scripts/validate_kq.py || { echo "ERROR: validator missing"; exit 1; }
+          python3 skill/scripts/validate_kq.py --help > /dev/null
+          echo "validator OK"
+
+      - name: Validate example outputs (basic level)
+        run: |
+          set -e
+          for f in examples/*.md; do
+            echo "== $f"
+            python3 skill/scripts/validate_kq.py "$f" --level basic
+          done
+
+      - name: Validate test fixtures
+        run: |
+          set -e
+          for f in tests/fixtures/valid-*.md; do
+            echo "== $f"
+            python3 skill/scripts/validate_kq.py "$f" --level full
+          done
+          if python3 skill/scripts/validate_kq.py tests/fixtures/broken-missing-quadrant.md --level basic; then
+            echo "ERROR: broken fixture unexpectedly passed"; exit 1
+          fi
+          echo "fixtures behave as expected"
