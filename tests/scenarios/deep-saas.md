@@ -35,9 +35,11 @@ _2026-04-22 · depth: deep · web: off_
 
 ## 🌑 Unknown Unknowns — Hidden Risks & Blind Spots
 _Personas consulted: [axes: STEEP × CATWOE] → [Security auditor, Legal counsel, ...]_
-- [Item]: [brief note] (Security auditor)
-- [Item]: [brief note] (End user researcher)
-- [3–7 items total with persona attribution]
+- **[Item]**: [brief note] (Security auditor)
+- **[Item]**: [brief note] (End user researcher)
+- **[Item]**: [brief note] (9-windows)
+- **[Item]**: [brief note] (contradiction)
+- [3–7 items total, each attributed to a persona, 9-windows, or contradiction]
 ```
 
 ## Pass Criteria

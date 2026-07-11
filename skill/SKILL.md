@@ -367,6 +367,8 @@ _Personas consulted: [axes: <axis A> × <axis B>] → [Persona 1, Persona 2, ...
 ```
 
 - Every promote/demote/retire from the re-assessment pass gets one line.
+- Carried-over (STILL-OPEN) UU items keep their original attribution when
+  present; items from a pre-v0.3 file that have none get `(probe: carried-over)`.
 
 ### Self-check before finishing
 
