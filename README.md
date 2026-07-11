@@ -19,9 +19,11 @@ Given a topic or rough seed, the skill generates:
 | Unknown Knowns | 🌫️ | Tacit knowledge you have but haven't articulated |
 | Unknown Unknowns | 🌑 | Hidden risks and blind spots via structured probing |
 
-**Shallow mode** (default): fast single-call draft using a five-technique UU
-stack (pre-mortem, assumption audit, adjacent domain transfer, second-order
-effects, TRIZ contradiction scan).
+**Shallow mode** (default): single-response draft driven by a twelve-probe UU
+worksheet (pre-mortem, assumption audit, JTBD reframe, non-consumption,
+user workarounds, adjacent/distant domain transfer, second-order effects,
+TRIZ contradiction scan, contrarian reversal, constraint audit, novice lens),
+with per-bullet probe attribution.
 
 **Deep mode** (`--depth deep`): dedicated Unknown Unknowns sub-phase using
 adversarial persona rotation across orthogonal axes (STEEP × CATWOE ×
@@ -57,12 +59,14 @@ Invoke with any of:
 |------|---------|--------|
 | `--depth shallow\|deep` | `shallow` | UU exploration depth |
 | `--web` | off | Pre-ground UU with web searches (expert concerns + recent failures) |
+| `--refresh <file>` | off | Re-explore an existing KQ file: migrate items across quadrants, probe for fresh items, emit a new versioned file with a Migration Log |
 
 ### CLI
 
 ```
 knowledge quadrants <topic> [--depth shallow|deep] [--web]
 KQ <topic>
+KQ --refresh <existing-kq-file.md> [--web]
 四象限 <topic>
 ```
 
@@ -80,10 +84,21 @@ knowledge quadrants launching a B2B SaaS --depth deep
 四象限 機器學習基礎設施 --depth deep --web
 ```
 
+```
+KQ --refresh 2026-04-23-kq-my-topic.md --web
+```
+
 ## Output
 
 A Markdown file with four labeled sections, suitable for filing in Obsidian
-or any PKM system. Default path: `./YYYY-MM-DD-kq-<slug>.md`.
+or any PKM system. Default path: `./YYYY-MM-DD-kq-<slug>.md`. refresh runs
+emit a new dated file (`v2`, `v3`, …) with a `🔁 Migration Log` section; the
+previous file is never modified. Emitted files are self-checked with
+`skill/scripts/validate_kq.py`.
+
+## Examples
+
+See [examples/](examples/) for real generated maps.
 
 ## License
 
