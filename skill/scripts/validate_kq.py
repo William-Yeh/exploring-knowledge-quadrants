@@ -30,14 +30,29 @@ META_RE = re.compile(
     r"^_\d{4}-\d{2}-\d{2} · depth: (shallow|deep) · web: (on|off)(.*)_$"
 )
 PROBE_TAG_RE = re.compile(r"\(probe: ([^)]+)\)")
-ATTRIBUTION_RE = re.compile(r"\([^()]+\)\s*$")
+# Attribution suffixes: "(probe: <tag>)", "(9-windows)", "(contradiction)",
+# or a persona name. Persona names must not start with a lowercase ASCII
+# letter — CJK names pass, trailing prose like "(see below)" does not.
+ATTRIBUTION_RE = re.compile(
+    r"\((probe: [^)]+|9-windows|contradiction|[^a-z)][^)]*)\)\s*$"
+)
 
 
 def find_sections(lines: list[str]) -> dict[str, list[str]]:
-    """Map each H2 header line to the lines that follow it (until next H2)."""
+    """Map each H2 header line to the lines that follow it (until next H2).
+
+    Lines inside fenced code blocks are skipped so a stray "## " or "- "
+    within a fence is never mistaken for a header or a bullet item.
+    """
     sections: dict[str, list[str]] = {}
     current = None
+    in_fence = False
     for line in lines:
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
         if line.startswith("## "):
             current = line.strip()
             sections[current] = []
@@ -62,6 +77,10 @@ def main(argv: list[str]) -> int:
         else:
             print(f"FAIL: {name}" + (f" — {reason}" if reason else ""))
             failures.append(name)
+
+    if not args.file.is_file():
+        print(f"FAIL: file not found — {args.file}")
+        return 1
 
     text = args.file.read_text(encoding="utf-8")
     lines = text.splitlines()
@@ -98,18 +117,18 @@ def main(argv: list[str]) -> int:
             quadrant_bodies[title] = sections[matches[0]]
 
     for title, body in quadrant_bodies.items():
-        bullets = [l for l in body if l.startswith("- ")]
+        bullets = [line for line in body if line.startswith("- ")]
         check(f">=3 bullets: {title}", len(bullets) >= 3, f"found {len(bullets)}")
 
     if args.level == "full" and meta is not None:
         depth = meta.group(1)
         uu = quadrant_bodies.get(UU_TITLE, [])
-        uu_bullets = [l for l in uu if l.startswith("- ")]
+        uu_bullets = [line for line in uu if line.startswith("- ")]
         if depth == "shallow":
             tags = {
                 m.group(1).strip()
-                for l in uu
-                for m in PROBE_TAG_RE.finditer(l)
+                for line in uu
+                for m in PROBE_TAG_RE.finditer(line)
             }
             check(
                 "shallow: >=3 distinct probe tags in UU",
@@ -119,10 +138,15 @@ def main(argv: list[str]) -> int:
         else:
             check(
                 "deep: personas line in UU",
-                any(l.strip().startswith("_Personas consulted:") for l in uu),
+                any(
+                    line.strip().startswith("_Personas consulted:")
+                    for line in uu
+                ),
                 "expected a line starting with '_Personas consulted:'",
             )
-            attributed = [l for l in uu_bullets if ATTRIBUTION_RE.search(l)]
+            attributed = [
+                line for line in uu_bullets if ATTRIBUTION_RE.search(line)
+            ]
             check(
                 "deep: >=3 attributed UU bullets",
                 len(attributed) >= 3,

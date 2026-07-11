@@ -65,16 +65,20 @@ jobs:
 
       - name: Validate example outputs (basic level)
         run: |
-          set -e
-          for f in examples/*.md; do
+          shopt -s nullglob
+          files=(examples/*.md)
+          [ ${#files[@]} -gt 0 ] || { echo "ERROR: no examples found"; exit 1; }
+          for f in "${files[@]}"; do
             echo "== $f"
             python3 skill/scripts/validate_kq.py "$f" --level basic
           done
 
       - name: Validate test fixtures
         run: |
-          set -e
-          for f in tests/fixtures/valid-*.md; do
+          shopt -s nullglob
+          files=(tests/fixtures/valid-*.md)
+          [ ${#files[@]} -gt 0 ] || { echo "ERROR: no valid fixtures found"; exit 1; }
+          for f in "${files[@]}"; do
             echo "== $f"
             python3 skill/scripts/validate_kq.py "$f" --level full
           done

@@ -73,8 +73,10 @@ the Phase 1 draft:
 4. Run Phase 1 with two changes:
    - Seed each quadrant with the migrated items in their post-verdict
      positions.
-   - Add this instruction to the probe stack: *surface only items absent
-     from the old map — do not restate migrated items.*
+   - Add this instruction to the probe stack — in deep mode, to the Deep
+     Mode UU Sub-Phase (Steps 2 and 4) instead, since deep-mode Phase 1
+     has no probe stack: *surface only items absent from the old map —
+     do not restate migrated items.*
 5. In Phase 2, ask the user to review the migration table alongside the
    quadrants.
 6. In Phase 3, write a NEW file dated today with the same slug — never
@@ -351,7 +353,7 @@ _<YYYY-MM-DD> · depth: deep · web: on|off_
 
 ## 🌑 Unknown Unknowns — Hidden Risks & Blind Spots
 _Personas consulted: [axes: <axis A> × <axis B>] → [Persona 1, Persona 2, ...]_
-- **<short label>**: <brief note> (<Persona name> | 9-windows | contradiction)
+- **<short label>**: <brief note> (<one of: Persona name, 9-windows, or contradiction>)
 ```
 
 **Refresh additions (either template, `--refresh` only):**

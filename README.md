@@ -96,7 +96,7 @@ emit a new dated file (`v2`, `v3`, …) with a `🔁 Migration Log` section; the
 previous file is never modified. Emitted files are self-checked with
 `skill/scripts/validate_kq.py`.
 
-## Examples
+## Example Outputs
 
 See [examples/](examples/) for real generated maps.
 
