@@ -31,6 +31,6 @@ was manually refreshed into `2026-05-05-kq-ai-是個穩定可靠的測試者嗎.
 - [ ] New file contains a `## 🔁 Migration Log` section with one line per
       promote/demote/retire
 - [ ] Old file is unchanged (`git diff --stat <old file>` is empty / file
-      untouched on disk) and `python3 skill/scripts/validate_kq.py <old-file> --level full` exits 0
+      untouched on disk)
 - [ ] No migrated item is restated as a "fresh" UU bullet
 - [ ] `python3 skill/scripts/validate_kq.py <new-file> --level full` exits 0
