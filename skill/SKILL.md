@@ -134,7 +134,9 @@ bullets, so skipped probes are visible.
 | 12 | novice-lens | |
 
 The `(tag)` column holds the canonical probe tag used for attribution in the
-final output. The twelve probes, in worksheet order:
+final output. Row N of the table corresponds to probe N below — when editing,
+keep the table and the numbered list in the same order. The twelve probes, in
+worksheet order:
 
 1. **Pre-mortem**: Imagine this effort around `<topic>` fails in 3 years.
    What caused it? List failure modes that aren't in Known Unknowns —

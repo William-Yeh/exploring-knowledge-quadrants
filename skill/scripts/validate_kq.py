@@ -106,6 +106,7 @@ def main(argv: list[str]) -> int:
 
     sections = find_sections(lines)
     quadrant_bodies: dict[str, list[str]] = {}
+    quadrant_bullets: dict[str, list[str]] = {}
     for emoji, title in QUADRANTS:
         matches = [h for h in sections if emoji in h and title in h]
         check(
@@ -114,20 +115,22 @@ def main(argv: list[str]) -> int:
             f"found {len(matches)} matching H2 headers, expected exactly 1",
         )
         if len(matches) == 1:
-            quadrant_bodies[title] = sections[matches[0]]
-
-    for title, body in quadrant_bodies.items():
-        bullets = [line for line in body if line.startswith("- ")]
-        check(f">=3 bullets: {title}", len(bullets) >= 3, f"found {len(bullets)}")
+            body = sections[matches[0]]
+            bullets = [line for line in body if line.startswith("- ")]
+            quadrant_bodies[title] = body
+            quadrant_bullets[title] = bullets
+            check(
+                f">=3 bullets: {title}", len(bullets) >= 3, f"found {len(bullets)}"
+            )
 
     if args.level == "full" and meta is not None:
         depth = meta.group(1)
         uu = quadrant_bodies.get(UU_TITLE, [])
-        uu_bullets = [line for line in uu if line.startswith("- ")]
+        uu_bullets = quadrant_bullets.get(UU_TITLE, [])
         if depth == "shallow":
             tags = {
                 m.group(1).strip()
-                for line in uu
+                for line in uu_bullets
                 for m in PROBE_TAG_RE.finditer(line)
             }
             check(
