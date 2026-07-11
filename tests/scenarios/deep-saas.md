@@ -45,7 +45,8 @@ _Personas consulted: [axes: STEEP × CATWOE] → [Security auditor, Legal counse
 - [ ] Axes selection is from two different axis types (not same type)
 - [ ] Personas line present in UU section header
 - [ ] Each UU item has a source persona in parentheses
-- [ ] TRIZ 9-Windows scan (UU sub-phase Step 4) contributes at least one item
-- [ ] Contradiction scan (UU sub-phase Step 4) contributes at least one item
+- [ ] TRIZ 9-Windows scan contributes at least one item, tagged `(9-windows)`
+- [ ] Contradiction scan contributes at least one item, tagged `(contradiction)`
 - [ ] No UU item duplicates a KU item
 - [ ] File written and path announced
+- [ ] `python3 skill/scripts/validate_kq.py <output-file> --level full` exits 0

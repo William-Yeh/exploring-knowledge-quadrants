@@ -47,8 +47,10 @@ _2026-04-22 · depth: shallow · web: off_
 
 ## Pass Criteria
 
+- [ ] Draft response renders the 12-row probe worksheet table before the UU bullets
 - [ ] Four labeled sections present with correct emoji headers
 - [ ] UU section has no "personas consulted" line (shallow mode)
-- [ ] UU items cover at least 3 of the 5 probe techniques
+- [ ] Every UU bullet ends with a `(probe: <tag>)` attribution, ≥3 distinct tags
 - [ ] No item in UU is a straightforward KU (surprise-value ranking worked)
 - [ ] File is written to disk and path announced
+- [ ] `python3 skill/scripts/validate_kq.py <output-file> --level full` exits 0
