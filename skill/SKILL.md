@@ -6,7 +6,7 @@ description: >-
 license: Apache-2.0
 metadata:
   author: William-Yeh
-  version: "0.2"
+  version: "0.3"
 ---
 
 # exploring-knowledge-quadrants
@@ -68,7 +68,29 @@ describing the tacit pattern or instinct.
 
 **🌑 Unknown Unknowns — Hidden Risks & Blind Spots (shallow technique stack)**
 
-Apply all twelve probes in sequence. For each, generate 1–2 candidate items:
+Fill in the probe worksheet: a markdown table with one row per probe, in
+order. Each row gets 0–2 candidate items. Write `—` when a probe yields
+nothing genuine — an empty row is better than a forced item. Render the
+completed worksheet in the draft response *before* the consolidated UU
+bullets, so skipped probes are visible.
+
+| # | Probe (tag) | Candidate item(s) |
+|---|-------------|-------------------|
+| 1 | pre-mortem | |
+| 2 | assumption-audit | |
+| 3 | JTBD | |
+| 4 | non-consumption | |
+| 5 | workarounds | |
+| 6 | adjacent-domain | |
+| 7 | distant-domain | |
+| 8 | second-order | |
+| 9 | contradiction | |
+| 10 | reversal | |
+| 11 | constraint-audit | |
+| 12 | novice-lens | |
+
+The `(tag)` column holds the canonical probe tag used for attribution in the
+final output. The twelve probes, in worksheet order:
 
 1. **Pre-mortem**: Imagine this effort around `<topic>` fails in 3 years.
    What caused it? List failure modes that aren't in Known Unknowns —
@@ -131,7 +153,10 @@ Apply all twelve probes in sequence. For each, generate 1–2 candidate items:
 
 Consolidate probe results: deduplicate, then rank by surprise value. Demote
 any item the user almost certainly already knows to Known Unknowns. Keep 3–5
-genuinely surprising items as the Unknown Unknowns bullets.
+genuinely surprising items as the Unknown Unknowns bullets. End every final
+UU bullet with its source tag from the worksheet, e.g. `(probe: pre-mortem)`,
+`(probe: JTBD)`. When an item merges findings from several probes, tag the
+dominant one.
 
 Present the full draft clearly labeled **"Draft — please review."**
 
@@ -227,7 +252,9 @@ degrade something else?" Extract 1–2 structural tension items. These are TRIZ
 physical contradictions baked into the domain.
 
 Merge Step 4 findings into the Step 3 list. Re-deduplicate and re-rank.
-Write final UU bullets (3–7 items in deep mode).
+Write final UU bullets (3–7 items in deep mode). Attribute every bullet:
+persona-sourced items end with `(<Persona name>)`, 9-Windows items with
+`(9-windows)`, contradiction-scan items with `(contradiction)`.
 
 ---
 
@@ -247,17 +274,20 @@ Write the final document. Use the template for the active mode:
 # Knowledge Quadrants: <topic>
 _<YYYY-MM-DD> · depth: shallow · web: on|off_
 
+> **Seed context:** <the user's seed, verbatim or lightly edited — include
+> this blockquote only when the user supplied more than a bare topic phrase>
+
 ## 👁️ Known Knowns — Conscious Knowledge
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🔍 Known Unknowns — Identified Gaps
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🌫️ Unknown Knowns — Tacit Knowledge
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🌑 Unknown Unknowns — Hidden Risks & Blind Spots
-- <item>: <brief note>
+- **<short label>**: <brief note> (probe: <tag>)
 ```
 
 **Deep mode template:**
@@ -265,18 +295,36 @@ _<YYYY-MM-DD> · depth: shallow · web: on|off_
 # Knowledge Quadrants: <topic>
 _<YYYY-MM-DD> · depth: deep · web: on|off_
 
+> **Seed context:** <the user's seed, verbatim or lightly edited — include
+> this blockquote only when the user supplied more than a bare topic phrase>
+
 ## 👁️ Known Knowns — Conscious Knowledge
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🔍 Known Unknowns — Identified Gaps
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🌫️ Unknown Knowns — Tacit Knowledge
-- <item>: <brief note>
+- **<short label>**: <brief note>
 
 ## 🌑 Unknown Unknowns — Hidden Risks & Blind Spots
 _Personas consulted: [axes: <axis A> × <axis B>] → [Persona 1, Persona 2, ...]_
-- <item>: <brief note> (<Persona name>)
+- **<short label>**: <brief note> (<Persona name> | 9-windows | contradiction)
 ```
 
-After writing the file, tell the user: "Knowledge map written to `<path>`."
+### Self-check before finishing
+
+Run the structural validator that ships with this skill on the emitted file:
+
+```bash
+python3 <this-skill's-directory>/scripts/validate_kq.py <output-path> --level full
+```
+
+- All checks PASS → tell the user: "Knowledge map written to `<path>` (validated)."
+- Any check FAILs → fix the output file and re-run, at most 2 retries. If
+  failures remain after that, tell the user which checks still fail — never
+  hide a failing check.
+- If `python3` is unavailable, verify by hand against this checklist: H1
+  starts with `# Knowledge Quadrants:`; metadata line present; all four
+  emoji quadrant headers present; ≥3 bullets per quadrant; UU bullets carry
+  probe/persona attribution.
