@@ -91,7 +91,7 @@ KQ --refresh 2026-04-23-kq-my-topic.md --web
 ## Output
 
 A Markdown file with four labeled sections, suitable for filing in Obsidian
-or any PKM system. Default path: `./YYYY-MM-DD-kq-<slug>.md`. refresh runs
+or any PKM system. Default path: `./YYYY-MM-DD-kq-<slug>.md`. Refresh runs
 emit a new dated file (`v2`, `v3`, …) with a `🔁 Migration Log` section; the
 previous file is never modified. Emitted files are self-checked with
 `skill/scripts/validate_kq.py`.
