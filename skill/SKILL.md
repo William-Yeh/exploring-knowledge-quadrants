@@ -21,6 +21,7 @@ hidden blind spots (🌑).
 |------|--------|---------|--------|
 | `--depth` | `shallow`, `deep` | `shallow` | Controls Unknown Unknowns exploration depth |
 | `--web` | (boolean) | off | Grounds Unknown Unknowns in real-world search |
+| `--refresh` | `<path>` | off | Re-explores an existing KQ file: migrates items across quadrants, probes for fresh items, emits a new versioned file |
 
 Input may be a focused topic, a rough prose description, or a seed with
 `[ ]` checkbox items for suggested angles.
@@ -38,6 +39,47 @@ Summarize findings in 3–5 bullets labeled "Web grounding." Inject this summary
 as additional context into the Unknown Unknowns draft in Phase 1.
 
 If `--web` was not specified, skip this section entirely.
+
+---
+
+## Refresh Pre-Phase (`--refresh <file>` only)
+
+If `--refresh` was specified — or the user asks to refresh/update an existing
+knowledge map (e.g. "refresh this KQ", "更新這份四象限") — run this before
+Phase 1. Otherwise skip this section entirely.
+
+1. Read the old KQ file. Extract: topic, seed-context blockquote (if any),
+   version (`vN` from the metadata line; treat a file without a version
+   marker as `v1`), and every bullet item per quadrant.
+2. If `--web` was also specified, add a third search to the Web Mode
+   Pre-Phase: `<topic> latest research evidence`.
+3. **Re-assessment pass** — assign EVERY existing item one verdict:
+
+| Verdict | Meaning | Action |
+|---------|---------|--------|
+| CONFIRMED | UU/UK item is now established knowledge | promote to KK |
+| ANSWERED | KU item has been resolved | promote to KK |
+| STILL-OPEN | unchanged | keep in place |
+| AWARE-NOW | UU item the user clearly knows about now | demote to KU |
+| STALE | no longer relevant | retire (appears only in the Migration Log) |
+
+Record the non-STILL-OPEN verdicts in a migration table and display it with
+the Phase 1 draft:
+
+| Item (abbreviated) | From | To | Reason |
+|--------------------|------|----|--------|
+| <first ~8 words of the item> | UU | KK | <one-line reason> |
+
+4. Run Phase 1 with two changes:
+   - Seed each quadrant with the migrated items in their post-verdict
+     positions.
+   - Add this instruction to the probe stack: *surface only items absent
+     from the old map — do not restate migrated items.*
+5. In Phase 2, ask the user to review the migration table alongside the
+   quadrants.
+6. In Phase 3, write a NEW file dated today with the same slug — never
+   modify the old file — and apply the refresh additions to the template
+   (version bump + Migration Log; see Phase 3).
 
 ---
 
@@ -311,6 +353,20 @@ _<YYYY-MM-DD> · depth: deep · web: on|off_
 _Personas consulted: [axes: <axis A> × <axis B>] → [Persona 1, Persona 2, ...]_
 - **<short label>**: <brief note> (<Persona name> | 9-windows | contradiction)
 ```
+
+**Refresh additions (either template, `--refresh` only):**
+
+- Metadata line becomes:
+  `_<YYYY-MM-DD> · depth: shallow|deep · web: on|off · v<N+1> (refreshed from <old filename>)_`
+- Keep (or extend) the old file's seed-context blockquote.
+- Append at the end of the document:
+
+```markdown
+## 🔁 Migration Log
+- <item (abbreviated)>: <From> → <To> — <one-line reason>
+```
+
+- Every promote/demote/retire from the re-assessment pass gets one line.
 
 ### Self-check before finishing
 
