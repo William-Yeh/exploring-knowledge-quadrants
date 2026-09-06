@@ -19,11 +19,20 @@ Given a topic or rough seed, the skill generates:
 | Unknown Knowns | 🌫️ | Tacit knowledge you have but haven't articulated |
 | Unknown Unknowns | 🌑 | Hidden risks and blind spots via structured probing |
 
-**Shallow mode** (default): single-response draft driven by a twelve-probe UU
-worksheet (pre-mortem, assumption audit, JTBD reframe, non-consumption,
-user workarounds, adjacent/distant domain transfer, second-order effects,
-TRIZ contradiction scan, contrarian reversal, constraint audit, novice lens),
-with per-bullet probe attribution.
+**Shallow mode** (default): a single-response draft driven by a twelve-probe UU
+worksheet, with per-bullet probe attribution. The probes:
+
+- pre-mortem
+- assumption audit
+- JTBD reframe
+- non-consumption
+- user workarounds
+- adjacent/distant domain transfer
+- second-order effects
+- TRIZ contradiction scan
+- contrarian reversal
+- constraint audit
+- novice lens
 
 **Deep mode** (`--depth deep`): dedicated Unknown Unknowns sub-phase using
 adversarial persona rotation across orthogonal axes (STEEP × CATWOE ×
