@@ -74,7 +74,7 @@ the Phase 1 draft:
    - Seed each quadrant with the migrated items in their post-verdict
      positions.
    - Add this instruction to the probe stack — in deep mode, to the Deep
-     Mode UU Sub-Phase (Steps 2 and 4) instead, since deep-mode Phase 1
+     Mode UU Sub-Phase (Steps 2 and 3) instead, since deep-mode Phase 1
      has no probe stack: *surface only items absent from the old map —
      do not restate migrated items.*
 5. In Phase 2, ask the user to review the migration table alongside the
@@ -269,19 +269,9 @@ For each persona, write 1–3 findings in their voice:
 Do not repeat items already in Known Unknowns. Focus strictly on what the
 user's current framing fails to see.
 
-### Step 3: Consolidation
+### Step 3: TRIZ Supplement
 
-1. Collect all persona findings.
-2. Deduplicate and cluster overlapping findings.
-3. Rank by surprise value:
-   - Items the user almost certainly knows but hasn't addressed → demote to Known Unknowns
-   - Items representing genuine blind spots → keep in Unknown Unknowns
-4. Tentatively list 3–5 UU candidates internally (do not display yet — this working list will be revised in Step 4). Note the source persona for each.
-
-### Step 4: TRIZ Supplement
-
-After persona rotation, run two additional probes and fold results back into
-Step 3 consolidation before writing final bullets.
+Run two structural probes to complement the persona findings.
 
 **9-Windows scan** — traverse the 3×3 matrix of system level × time horizon.
 For each cell, ask: "What is happening here that the current map ignores?"
@@ -297,8 +287,12 @@ Extract 1–2 UU candidates from underexplored cells.
 degrade something else?" Extract 1–2 structural tension items. These are TRIZ
 physical contradictions baked into the domain.
 
-Merge Step 4 findings into the Step 3 list. Re-deduplicate and re-rank.
-Write final UU bullets (3–7 items in deep mode). Attribute every bullet:
+### Step 4: Consolidation
+
+Pool the persona findings (Step 2) and the TRIZ findings (Step 3), then
+deduplicate and rank by surprise value. Demote any item the user almost
+certainly knows but hasn't addressed to Known Unknowns; keep genuine blind
+spots as the final UU bullets (3–7 items in deep mode). Attribute every bullet:
 persona-sourced items end with `(<Persona name>)`, 9-Windows items with
 `(9-windows)`, contradiction-scan items with `(contradiction)`.
 
@@ -371,8 +365,8 @@ _Personas consulted: [axes: <axis A> × <axis B>] → [Persona 1, Persona 2, ...
 ```
 
 - Every promote/demote/retire from the re-assessment pass gets one line.
-- Carried-over (STILL-OPEN) UU items keep their original attribution when
-  present; items from a pre-v0.3 file that have none get `(probe: carried-over)`.
+- Carried-over (STILL-OPEN) UU items keep their original attribution;
+  those without one get `(probe: carried-over)`.
 
 ### Self-check before finishing
 
